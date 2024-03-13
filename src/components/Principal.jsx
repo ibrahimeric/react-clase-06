@@ -1,31 +1,43 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import Clima from './Clima';
+import '../css/Principal.css'
+
 
 
 function Principal() {
-    const [count, setCount] = useState(0)
-    const [estaActivado, setEstaActivado] = useState(false)
-    const [estaLloviendo, setEstaLloviendo] = useState(false)
-    const titulo = 'Mi State';
-    const incrementar = () => {
+
+    const titulo = 'Soy App - El padre';
+    const [count, setCount] = useState(1)
+
+    useEffect(() => {
+        //logica
+        console.log('Se cambio count')
+    }, [count])
+
+    function cambiarNro() {
         setCount(count + 1);
-        console.log('Nuestro contador ahora vale: ', count);
     }
-    const cambiarClima = () => {
-        setEstaLloviendo(!estaLloviendo);
+
+    function cambiarNro2() {
+        setCount(count + 1);
     }
+
 
 
     return (
         <>
-            {estaActivado === true ?
-                <div className='card'>
-                    <button onClick={incrementar}>
-                        count es {count}
-                    </button>
-                </div>
-                :
-                <h2>NO ESTA ACTIVADO</h2>
-            }
+            <div className='card'>
+                <h1>{titulo}</h1>
+
+                <Clima />
+                <h2>{count}</h2>
+                <button onClick={cambiarNro}>
+                    cambiarNro
+                </button>
+                <button onClick={cambiarNro2}>
+                    cambiarNro2
+                </button>
+            </div>
         </>
     )
 }
